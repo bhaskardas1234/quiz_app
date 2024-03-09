@@ -23,18 +23,40 @@
 		<h1 class="bg-danger text-light">Select only one answer</h1>
 
 
-		<form action="/submit" method="post">
-		<div class="ques-box bg-dark text-light">
-		
-		
-		</div>
-		
-		
-		
-		
+		<form action="/submit" method="post" th:object=${qform}>
+			<div class="ques-box bg-dark text-light" th:each="ques, i:${qform.questions}">
+
+				<p class="title" th:text="${ques.title}"></p>
+				<div class="option">
+					<input type="radio" th:name="|questions[${i.index}].chose|"
+						th:value="1" />
+					<p th:text="${ques.optionA}"></p>
+				</div>
+				<div class="option">
+					<input type="radio" th:name="|questions[${i.index}].chose|"
+						th:value="2" />
+					<p th:text="${ques.optionB}"></p>
+				</div>
+				<div class="option">
+					<input type="radio" th:name="|questions[${i.index}].chose|"
+						th:value="3" />
+					<p th:text="${ques.optionC}"></p>
+				</div>
+				
+				
+				<input type="hidden" th:name="|auestions[{${i.index}].auesId|" th:value="${ques.quesId}"/>
+				<input type="hidden" th:name="|auestions[{${i.index}].asn|" th:value="${ques.ans}"/>
+				<input type="hidden" th:name="|auestions[{${i.index}].title|" th:value="${ques.title}"/><!-- th:name er index e th:value ta save hobe -->
+
+
+			</div>
+
+
+            <button type="submit" class="btn btn-warning d-block mx-auto mt-4"> Submit ans</button>
+
 		</form>
 
-
+		 
 
 	</div>
 

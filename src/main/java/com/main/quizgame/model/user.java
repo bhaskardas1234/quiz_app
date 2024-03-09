@@ -1,7 +1,19 @@
 package com.main.quizgame.model;
 
+import org.springframework.stereotype.Component;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Component
+@Table(name="user")
+
 public class user {
+	@Id
 	private String username;
+
 	private String password;
 	public user() {
 		super();
