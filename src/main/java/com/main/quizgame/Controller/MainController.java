@@ -1,5 +1,6 @@
 package com.main.quizgame.Controller;
 
+import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Controller;
@@ -53,14 +54,27 @@ public class MainController {
 		return "quizpage.html";
 		
 	}
-	@PostMapping("/submit")
-	public String ansSubmit(@ModelAttribute("qform") questionform ques ) {
-		
-		
-		
-		return "index.html";
-	}
-	
+	 @PostMapping("/submit")
+	    public String ansSubmit(@ModelAttribute("qform") questionform qform) {
+		 if(!submitted) {
+			 result.setTotalcorrect(quizservice.getResult(qform));
+			 quizservice.saveScore(result);
+			 submitted=true;
+			 
+		 }
+	        
+	        
+	        return "result.html"; 
+	    }
+	 
+	 @GetMapping("/scoreboard")
+	 public String getScoreBoard(ModelMap m) {
+		 
+		 
+	     	 
+		 m.addAttribute("slist",quizservice.getAllResult()); 
+		 return "scoreBoard.html";
+	 }
 	
 	
 
