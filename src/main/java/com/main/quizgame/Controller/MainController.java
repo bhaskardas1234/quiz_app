@@ -1,5 +1,7 @@
 package com.main.quizgame.Controller;
 
+import java.util.ArrayList;
+
 import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -55,24 +57,29 @@ public class MainController {
 		
 	}
 	 @PostMapping("/submit")
-	    public String ansSubmit(@ModelAttribute("qform") questionform qform) {
+	    public String ansSubmit(@ModelAttribute("qform") questionform qform,ModelMap m) {
 		 if(!submitted) {
 			 result.setTotalcorrect(quizservice.getResult(qform));
 			 quizservice.saveScore(result);
 			 submitted=true;
 			 
 		 }
-	        
+	       m.addAttribute("result",result);
 	        
 	        return "result.html"; 
 	    }
 	 
 	 @GetMapping("/scoreboard")
 	 public String getScoreBoard(ModelMap m) {
+		 ArrayList<Result> slist=(ArrayList<Result>) quizservice.getAllResult();
+//	//System.out.println( " is of type " + ((Object)quizservice.getAllResult()).getClass().getSimpleName());  
+//		 for(Result a:slist) {
+//			 System.out.println(a.getUsername());
+//		 }
 		 
 		 
-	     	 
-		 m.addAttribute("slist",quizservice.getAllResult()); 
+		 
+;		m.addAttribute("slist",slist); 
 		 return "scoreBoard.html";
 	 }
 	

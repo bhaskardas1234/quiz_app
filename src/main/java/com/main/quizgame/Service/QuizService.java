@@ -64,8 +64,8 @@ public class QuizService {
 	
 	
 	public List<Result> getAllResult(){
-		List<Result> allresult=rrepo.findAll();
-		return allresult;
+		List<Result> list=rrepo.findAll();
+		return list;
 	}
 	
 	
