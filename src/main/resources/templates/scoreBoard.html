@@ -19,6 +19,24 @@
 
 
 
+<!-- main container -->
+<h2 class ="bg-danger text-center mb-5 p-2">Score Card</h2>
+
+
+	<table class="bg-danger text-light">
+		<tr>
+			<th>Name</th>
+			<th>Score</th>
+		</tr>
+		<tr th:each="score : ${slist}">
+			<td th:text="${score.username}"></td>
+			<td th:text="${score.totalcorrect}"></td>
+
+
+		</tr>
+
+
+	</table>
 
 
 
@@ -39,7 +57,8 @@
 
 
 
-<!-- footer part -->
+
+	<!-- footer part -->
 <!-- <div th:insert="footer.html :: footer"></div>-->
 
 
